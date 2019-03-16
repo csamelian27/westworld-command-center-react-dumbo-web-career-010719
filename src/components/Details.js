@@ -12,7 +12,7 @@ const Details = (props) => {
 
   return(
     <Segment id="details" className="HQComps">
-      {props.clickedHost ? <HostInfo areas={props.areas} host={props.clickedHost} handleActiveToggle={props.handleActiveToggle} /> : renderSomething()}
+      {props.clickedHost ? <HostInfo areas={props.areas} host={props.clickedHost} handleActiveToggle={props.handleActiveToggle} handleChangeArea={props.handleChangeArea} /> : renderSomething()}
     </Segment>
   )
 }

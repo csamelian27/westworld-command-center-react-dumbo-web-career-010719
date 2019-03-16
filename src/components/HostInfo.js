@@ -6,11 +6,7 @@ import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-r
 class HostInfo extends Component {
 
   handleChange = (e, {value}) => {
-    // the 'value' attribute is given via Semantic's Dropdown component.
-    // Put a debugger in here and see what the "value" variable is when you pass in different options.
-    // See the Semantic docs for more info: https://react.semantic-ui.com/modules/dropdown/#usage-controlled
-    console.log(e.target);
-    console.log(value);
+    this.props.handleChangeArea(value, this.props.host)
   }
 
   toggle = () => {
@@ -19,16 +15,33 @@ class HostInfo extends Component {
   }
 
   render(){
+    let optionsArr=[{
+        key: this.props.areas[0].name,
+        text: this.props.areas[0].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[0].name
+      }, {
+        key: this.props.areas[1].name,
+        text: this.props.areas[1].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[1].name
+      }, {
+        key: this.props.areas[2].name,
+        text: this.props.areas[2].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[2].name
+      }, {
+        key: this.props.areas[3].name,
+        text: this.props.areas[3].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[3].name
+      }, {
+        key: this.props.areas[4].name,
+        text: this.props.areas[4].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[4].name
+      }, {
+        key: this.props.areas[5].name,
+        text: this.props.areas[5].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        value: this.props.areas[5].name
+      }]
 
-    console.log(this.props.host.area);
-
-    let optionsArr = this.props.areas.map(area => <option key={area.name} text={area.name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} value={area.name}>{area.name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</option>)
-
-    let currentArea = optionsArr.find(area => {
-      return area.key === this.props.host.area
-    })
-
-    console.log(currentArea.props.text);
+    let currentArea = optionsArr.find(area => area.key === this.props.host.area)
 
     return (
       <Grid>
@@ -59,7 +72,7 @@ class HostInfo extends Component {
               Current Area:
               <Dropdown
                 onChange={this.handleChange}
-                value={currentArea.props.text}
+                value={currentArea.value}
                 options={optionsArr}
                 selection
               />
