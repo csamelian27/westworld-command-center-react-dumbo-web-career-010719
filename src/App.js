@@ -49,6 +49,14 @@ class App extends Component {
     })
   }
 
+  handleClickActivateAll = (activeState) => {
+    let newArr = [...this.state.hosts]
+    let newNewArr = newArr.map(host => host.active = activeState)
+    this.setState({
+      hosts: newArr
+    })
+  }
+
   render(){
     const decommissionedHosts = this.state.hosts.filter(host => !host.active)
 
@@ -58,8 +66,8 @@ class App extends Component {
     return (
       <Segment id='app'>
         <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} handleClickHost={this.handleClickHost} />
-        <Headquarters areas={this.state.areas} hosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle}
-        handleChangeArea={this.handleChangeArea} />
+        <Headquarters areas={this.state.areas} allHosts={this.state.hosts} decHosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle}
+        handleChangeArea={this.handleChangeArea} handleClickActivateAll={this.handleClickActivateAll} />
       </Segment>
     )
   }

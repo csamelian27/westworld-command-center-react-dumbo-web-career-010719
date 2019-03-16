@@ -3,27 +3,25 @@ import '../stylesheets/Headquarters.css';
 import { Grid } from 'semantic-ui-react';
 import Details from './Details'
 import ColdStorage from './ColdStorage'
-// import LogPanel from './LogPanel'
+import LogPanel from './LogPanel'
 
 class Headquarters extends Component {
-
   render(){
     return(
       <Grid celled='internally'>
         <Grid.Column width={8}>
-          <ColdStorage hosts={this.props.hosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
+          <ColdStorage hosts={this.props.decHosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
         </Grid.Column>
         <Grid.Column width={5}>
           <Details
-          areas={this.props.areas} hosts={this.props.hosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} />
+          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} />
         </Grid.Column>
         <Grid.Column width={3}>
-
+          <LogPanel handleClickActivateAll={this.props.handleClickActivateAll} />
         </Grid.Column>
       </Grid>
     )
   }
 }
-// <LogPanel />
 
 export default Headquarters;
