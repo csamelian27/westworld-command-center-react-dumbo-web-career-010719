@@ -9,7 +9,9 @@ class App extends Component {
 
   state = {
     areas: [],
-    hosts: []
+    hosts: [],
+    selectedArea: null,
+    clickedHost: null
   }
 
   componentDidMount = () => {
@@ -21,16 +23,33 @@ class App extends Component {
       .then(hosts => this.setState({hosts}))
   }
 
-  // As you go through the components given you'll see a lot of functional components.
-  // But feel free to change them to whatever you want.
-  // It's up to you whether they should be stateful or not.
+  handleClickHost = (hostObj) => {
+    let newArr = [...this.state.hosts]
+    let selectedHost = newArr.find(host => host.id === hostObj.id)
+    this.setState({
+      clickedHost: selectedHost
+    })
+  }
+
+  handleActiveToggle = (host) => {
+    let newArr = [...this.state.hosts]
+    let selectHost = newArr.find(hostObj => hostObj.id === host.id)
+    selectHost.active = !selectHost.active
+    this.setState({
+      hosts: newArr
+    })
+  }
 
   render(){
+    const decommissionedHosts = this.state.hosts.filter(host => !host.active)
+
+    const activeHosts = this.state.hosts.filter(host => host.active)
+
     console.log(this.state);
     return (
       <Segment id='app'>
-        <WestworldMap areas={this.state.areas} hosts={this.state.hosts} />
-        <Headquarters areas={this.state.areas} hosts={this.state.hosts} handleClick={this.handleClick} />
+        <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} />
+        <Headquarters areas={this.state.areas} hosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle} />
       </Segment>
     )
   }

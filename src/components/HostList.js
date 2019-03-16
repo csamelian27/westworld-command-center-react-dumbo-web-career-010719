@@ -5,13 +5,10 @@ import Host from './Host'
 class HostList extends React.Component {
 
   render() {
-    let decommissionedHosts = this.props.hosts.filter(host => !host.active).map(hostObj => <Host key={hostObj.id} host={hostObj} handleClick={this.props.handleClick} />)
-
-    console.log(decommissionedHosts);
-
+    console.log(this.props.hosts);
     return(
       <Card.Group itemsPerRow={6}>
-        {decommissionedHosts}
+        {this.props.hosts.map(hostObj => <Host key={hostObj.id} host={hostObj} clickedHost={this.props.clickedHost} handleClickHost={this.props.handleClickHost} clicked={this.props.clickedHost === hostObj ? "host selected" : "host"} />)}
       </Card.Group>
     )
   }

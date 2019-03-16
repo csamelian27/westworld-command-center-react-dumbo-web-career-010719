@@ -6,21 +6,16 @@ import ColdStorage from './ColdStorage'
 // import LogPanel from './LogPanel'
 
 class Headquarters extends Component {
-  // Remember, there's many ways to do this. This doesn't have to be a class component. It's up to you.
-
-  handleClick = (hostObj) =>{
-    console.log(hostObj);
-    // <Details host={hostObj} />
-  }
 
   render(){
     return(
       <Grid celled='internally'>
         <Grid.Column width={8}>
-          <ColdStorage hosts={this.props.hosts} handleClick={this.handleClick} />
+          <ColdStorage hosts={this.props.hosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
         </Grid.Column>
         <Grid.Column width={5}>
-          <Details />
+          <Details
+          areas={this.props.areas} hosts={this.props.hosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} />
         </Grid.Column>
         <Grid.Column width={3}>
 
