@@ -42,7 +42,8 @@ class App extends Component {
   handleChangeArea = (newArea, host) => {
     let newArr = [...this.state.hosts]
     let selectHost = newArr.find(hostObj => hostObj.id === host.id)
-    selectHost.area = newArea
+    let numHostsInArea = newArr.filter(host => host.area === newArea).length
+    numHostsInArea > 6 ? null : selectHost.area = newArea
     this.setState({
       hosts: newArr
     })
@@ -56,7 +57,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <Segment id='app'>
-        <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} />
+        <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} handleClickHost={this.handleClickHost} />
         <Headquarters areas={this.state.areas} hosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle}
         handleChangeArea={this.handleChangeArea} />
       </Segment>
