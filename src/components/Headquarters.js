@@ -8,7 +8,6 @@ import LogPanel from './LogPanel'
 class Headquarters extends Component {
 
   render(){
-    console.log(this.state);
     return(
       <Grid celled='internally'>
         <Grid.Column width={8}>
