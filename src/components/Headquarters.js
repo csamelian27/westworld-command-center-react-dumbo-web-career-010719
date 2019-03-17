@@ -15,7 +15,7 @@ class Headquarters extends Component {
         </Grid.Column>
         <Grid.Column width={5}>
           <Details
-          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} addLog={this.props.addLog} />
+          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} cleanName={this.props.cleanName} />
         </Grid.Column>
         <Grid.Column width={3}>
           <LogPanel handleClickActivateAll={this.props.handleClickActivateAll} logs={this.props.logs} />

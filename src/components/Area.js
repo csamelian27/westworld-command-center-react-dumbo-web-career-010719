@@ -5,17 +5,11 @@ import HostList from './HostList'
 class Area extends React.Component {
 
   render(){
-    console.log(this.props);
-
-    let cleanedName = this.props.area.name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
     let currentHosts = this.props.hosts.filter(host => host.area === this.props.area.name)
-
-    console.log(currentHosts);
 
     return(
       <div className='area' id={this.props.area.name}>
-        <h3 className='labels'>{cleanedName}</h3>
+        <h3 className='labels'>{this.props.cleanName(this.props.area.name)}</h3>
         <HostList hosts={currentHosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
       </div>
     )

@@ -18,27 +18,27 @@ class HostInfo extends Component {
   render(){
     let optionsArr=[{
         key: this.props.areas[0].name,
-        text: this.props.areas[0].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[0].name),
         value: this.props.areas[0].name
       }, {
         key: this.props.areas[1].name,
-        text: this.props.areas[1].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[1].name),
         value: this.props.areas[1].name
       }, {
         key: this.props.areas[2].name,
-        text: this.props.areas[2].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[2].name),
         value: this.props.areas[2].name
       }, {
         key: this.props.areas[3].name,
-        text: this.props.areas[3].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[3].name),
         value: this.props.areas[3].name
       }, {
         key: this.props.areas[4].name,
-        text: this.props.areas[4].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[4].name),
         value: this.props.areas[4].name
       }, {
         key: this.props.areas[5].name,
-        text: this.props.areas[5].name.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        text: this.props.cleanName(this.props.areas[5].name),
         value: this.props.areas[5].name
       }]
 

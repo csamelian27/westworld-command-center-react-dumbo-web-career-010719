@@ -57,11 +57,15 @@ class App extends Component {
     let areaObj = this.state.areas.find(area => area.name === newArea)
     let numHostsInArea = newArr.filter(host => host.area === newArea).length
     {numHostsInArea < areaObj.limit ? selectHost.area = newArea : null}
-    let log = numHostsInArea < areaObj.limit ? Log.notify(`${host.firstName} set in area ${newArea}`) : Log.error(`Too many hosts. Cannot add ${host.firstName} to ${newArea}`)
+    let log = numHostsInArea < areaObj.limit ? Log.notify(`${host.firstName} set in area ${this.cleanName(newArea)}`) : Log.error(`Too many hosts. Cannot add ${host.firstName} to ${this.cleanName(newArea)}`)
     this.addLog(log)
     this.setState({
       hosts: newArr
     })
+  }
+
+  cleanName = (el) => {
+    return el.replace("_", " ").toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
   }
 
   handleClickActivateAll = (activeState) => {
@@ -82,9 +86,9 @@ class App extends Component {
     console.log(this.state);
     return (
       <Segment id='app'>
-        <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} handleClickHost={this.handleClickHost} />
+        <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} handleClickHost={this.handleClickHost} cleanName={this.cleanName} />
         <Headquarters areas={this.state.areas} allHosts={this.state.hosts} decHosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle}
-        handleChangeArea={this.handleChangeArea} handleClickActivateAll={this.handleClickActivateAll} addLog={this.addLog} logs={this.state.logs} />
+        handleChangeArea={this.handleChangeArea} handleClickActivateAll={this.handleClickActivateAll} logs={this.state.logs} cleanName={this.cleanName} />
       </Segment>
     )
   }
