@@ -7,6 +7,7 @@ class HostInfo extends Component {
 
   handleChange = (e, {value}) => {
     this.props.handleChangeArea(value, this.props.host)
+    this.props.areas.find(area => area.name === value)
   }
 
   toggle = () => {

@@ -31,10 +31,16 @@ class LogPanel extends React.Component {
   // }
 
   // {dummyLogs().map((log, i) => <p key={i} className={log.type}>{log.msg}</p>)}
+
+  // this.props.logs.map((log, i) => <p key={i} className={log.type}>{log.msg}</p>)
   render() {
+    let messages = this.props.logs.map((log, i) => <p key={i} className={log.type}>{log.msg}</p>)
+
+    console.log(messages);
     return(
       <Segment className="HQComps" id="logPanel">
         <pre>
+          {this.props.logs}
         </pre>
 
         <Button

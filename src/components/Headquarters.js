@@ -6,7 +6,9 @@ import ColdStorage from './ColdStorage'
 import LogPanel from './LogPanel'
 
 class Headquarters extends Component {
+
   render(){
+    console.log(this.state);
     return(
       <Grid celled='internally'>
         <Grid.Column width={8}>
@@ -14,10 +16,10 @@ class Headquarters extends Component {
         </Grid.Column>
         <Grid.Column width={5}>
           <Details
-          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} />
+          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} addLog={this.props.addLog} />
         </Grid.Column>
         <Grid.Column width={3}>
-          <LogPanel handleClickActivateAll={this.props.handleClickActivateAll} />
+          <LogPanel handleClickActivateAll={this.props.handleClickActivateAll} logs={this.props.logs} />
         </Grid.Column>
       </Grid>
     )

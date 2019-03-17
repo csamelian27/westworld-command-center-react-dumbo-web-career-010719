@@ -3,6 +3,7 @@ import './stylesheets/App.css'
 import { Segment } from 'semantic-ui-react';
 import WestworldMap from './components/WestworldMap'
 import Headquarters from './components/Headquarters'
+import { Log } from './services/Log'
 
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
   state = {
     areas: [],
     hosts: [],
-    clickedHost: null
+    clickedHost: null,
+    logs: []
   }
 
   componentDidMount = () => {
@@ -37,13 +39,26 @@ class App extends Component {
     this.setState({
       hosts: newArr
     })
+    let log = selectHost.active ? Log.warn(`Activated ${selectHost.firstName}`) : Log.notify(`Decommissioned ${selectHost.firstName}`)
+    this.addLog(log)
+  }
+
+  addLog = (log) => {
+    console.log(log);
+    let newArr = [log.msg, ...this.state.logs]
+    this.setState({
+      logs: newArr
+    })
   }
 
   handleChangeArea = (newArea, host) => {
     let newArr = [...this.state.hosts]
     let selectHost = newArr.find(hostObj => hostObj.id === host.id)
+    let areaObj = this.state.areas.find(area => area.name === newArea)
     let numHostsInArea = newArr.filter(host => host.area === newArea).length
-    numHostsInArea > 6 ? null : selectHost.area = newArea
+    {numHostsInArea < areaObj.limit ? selectHost.area = newArea : null}
+    let log = numHostsInArea < areaObj.limit ? Log.notify(`${host.firstName} set in area ${newArea}`) : Log.error(`Too many hosts. Cannot add ${host.firstName} to ${newArea}`)
+    this.addLog(log)
     this.setState({
       hosts: newArr
     })
@@ -55,6 +70,8 @@ class App extends Component {
     this.setState({
       hosts: newArr
     })
+    let log = activeState ? Log.warn(`Activating all hosts!`) : Log.notify(`Decommissioning all hosts.`)
+    this.addLog(log)
   }
 
   render(){
@@ -67,7 +84,7 @@ class App extends Component {
       <Segment id='app'>
         <WestworldMap areas={this.state.areas} hosts={activeHosts} clickedHost={this.state.clickedHost} handleClickHost={this.handleClickHost} />
         <Headquarters areas={this.state.areas} allHosts={this.state.hosts} decHosts={decommissionedHosts} handleClickHost={this.handleClickHost} clickedHost={this.state.clickedHost} handleActiveToggle={this.handleActiveToggle}
-        handleChangeArea={this.handleChangeArea} handleClickActivateAll={this.handleClickActivateAll} />
+        handleChangeArea={this.handleChangeArea} handleClickActivateAll={this.handleClickActivateAll} addLog={this.addLog} logs={this.state.logs} />
       </Segment>
     )
   }
