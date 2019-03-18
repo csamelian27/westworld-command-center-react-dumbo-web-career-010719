@@ -44,7 +44,6 @@ class App extends Component {
   }
 
   addLog = (log) => {
-    console.log(log);
     let newArr = [log.msg, ...this.state.logs]
     this.setState({
       logs: newArr

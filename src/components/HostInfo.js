@@ -16,31 +16,7 @@ class HostInfo extends Component {
   }
 
   render(){
-    let optionsArr=[{
-        key: this.props.areas[0].name,
-        text: this.props.cleanName(this.props.areas[0].name),
-        value: this.props.areas[0].name
-      }, {
-        key: this.props.areas[1].name,
-        text: this.props.cleanName(this.props.areas[1].name),
-        value: this.props.areas[1].name
-      }, {
-        key: this.props.areas[2].name,
-        text: this.props.cleanName(this.props.areas[2].name),
-        value: this.props.areas[2].name
-      }, {
-        key: this.props.areas[3].name,
-        text: this.props.cleanName(this.props.areas[3].name),
-        value: this.props.areas[3].name
-      }, {
-        key: this.props.areas[4].name,
-        text: this.props.cleanName(this.props.areas[4].name),
-        value: this.props.areas[4].name
-      }, {
-        key: this.props.areas[5].name,
-        text: this.props.cleanName(this.props.areas[5].name),
-        value: this.props.areas[5].name
-      }]
+    let optionsArr = this.props.areas.map(areaObj => {return {key: areaObj.name, text: this.props.cleanName(areaObj.name), value: areaObj.name}})
 
     let currentArea = optionsArr.find(area => area.key === this.props.host.area)
 

@@ -5,24 +5,21 @@ import Details from './Details'
 import ColdStorage from './ColdStorage'
 import LogPanel from './LogPanel'
 
-class Headquarters extends Component {
-
-  render(){
-    return(
-      <Grid celled='internally'>
-        <Grid.Column width={8}>
-          <ColdStorage hosts={this.props.decHosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
-        </Grid.Column>
-        <Grid.Column width={5}>
-          <Details
-          areas={this.props.areas} hosts={this.props.decHosts} clickedHost={this.props.clickedHost} handleActiveToggle={this.props.handleActiveToggle} handleChangeArea={this.props.handleChangeArea} cleanName={this.props.cleanName} />
-        </Grid.Column>
-        <Grid.Column width={3}>
-          <LogPanel handleClickActivateAll={this.props.handleClickActivateAll} logs={this.props.logs} />
-        </Grid.Column>
-      </Grid>
-    )
-  }
+const Headquarters = (props) => {
+  return(
+    <Grid celled='internally'>
+      <Grid.Column width={8}>
+        <ColdStorage hosts={props.decHosts} handleClickHost={props.handleClickHost} clickedHost={props.clickedHost} />
+      </Grid.Column>
+      <Grid.Column width={5}>
+        <Details
+        areas={props.areas} hosts={props.decHosts} clickedHost={props.clickedHost} handleActiveToggle={props.handleActiveToggle} handleChangeArea={props.handleChangeArea} cleanName={props.cleanName} />
+      </Grid.Column>
+      <Grid.Column width={3}>
+        <LogPanel handleClickActivateAll={props.handleClickActivateAll} logs={props.logs} />
+      </Grid.Column>
+    </Grid>
+  )
 }
 
 export default Headquarters;

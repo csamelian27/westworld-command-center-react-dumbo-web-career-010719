@@ -2,19 +2,15 @@ import React from 'react';
 import '../stylesheets/Host.css'
 import { Card } from 'semantic-ui-react'
 
-class Host extends React.Component {
-
-
-  render() {
-    return(
-      <Card
-        className={this.props.clicked}
-        onClick={() => this.props.handleClickHost(this.props.host)}
-        image={this.props.host.imageUrl}
-        raised
-      />
-    )
-  }
+const Host = (props) => {
+  return(
+    <Card
+      className={props.clicked}
+      onClick={() => props.handleClickHost(props.host)}
+      image={props.host.imageUrl}
+      raised
+    />
+  )
 }
 
 export default Host

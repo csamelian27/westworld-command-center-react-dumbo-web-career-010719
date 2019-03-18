@@ -2,18 +2,15 @@ import React from 'react';
 import '../stylesheets/Area.css'
 import HostList from './HostList'
 
-class Area extends React.Component {
+const Area = (props) => {
+  let currentHosts = props.hosts.filter(host => host.area === props.area.name)
 
-  render(){
-    let currentHosts = this.props.hosts.filter(host => host.area === this.props.area.name)
-
-    return(
-      <div className='area' id={this.props.area.name}>
-        <h3 className='labels'>{this.props.cleanName(this.props.area.name)}</h3>
-        <HostList hosts={currentHosts} handleClickHost={this.props.handleClickHost} clickedHost={this.props.clickedHost} />
-      </div>
-    )
-  }
+  return(
+    <div className='area' id={props.area.name}>
+      <h3 className='labels'>{props.cleanName(props.area.name)}</h3>
+      <HostList hosts={currentHosts} handleClickHost={props.handleClickHost} clickedHost={props.clickedHost} />
+    </div>
+  )
 }
 
 Area.propTypes = {
